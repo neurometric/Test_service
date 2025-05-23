@@ -1,0 +1,54 @@
+services:
+  db:
+    image: oscarfonts/h2:alpine
+    container_name: h2-db
+    env_file:
+      - .env
+    ports:
+      - "9092:9092"
+      - "8082:8082"
+    volumes:
+      - h2-data:/opt/h2-data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/login.jsp"]
+      interval: 10s
+      start_period: 20s
+      retries: 5
+    networks:
+      - app_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sausage-backend
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    networks:
+      - app_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sausage-frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    restart: on-failure
+    networks:
+      - app_net
+
+volumes:
+  h2-data:
+
+networks:
+  app_net:
+    driver: bridge
