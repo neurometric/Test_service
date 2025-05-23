@@ -1,0 +1,15 @@
+# npm и Angular мусор
+node_modules
+dist
+.e2e
+.angular
+*.log
+*.tmp
+npm-debug.log
+.git
+.gitignore
+.dockerignore
+Dockerfile
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,16 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.versionsBackup
+.idea/
+*.iml
+.vscode/
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+.git
+.gitignore
+*.log
+*.tmp
+*.out
+*.class

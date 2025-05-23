@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.tmp/
+.e2e/
+.angular/
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
